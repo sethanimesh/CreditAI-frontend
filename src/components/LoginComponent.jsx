@@ -21,7 +21,7 @@ export default function LoginComponent(){
 
     function handleSubmit(){
         if ((username==="sethanimesh") && (password==="dummy123")){
-            navigate('/welcome')
+            navigate(`/welcome/${username}`)
             setSuccessMessage(true)
             setErrorMessage(false)
         }

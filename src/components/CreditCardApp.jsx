@@ -10,7 +10,7 @@ export default function CreditCardApp(){
                 <Routes>
                     <Route path="/" element={<LoginComponent/>}></Route>
                     <Route path="/login" element={<LoginComponent/>}></Route>
-                    <Route path="/welcome" element={<WelcomeComponent/>}></Route>
+                    <Route path="/welcome/:username" element={<WelcomeComponent/>}></Route>
                     <Route path="*" element={<ErrorComponent/>}></Route>
                 </Routes>
             </BrowserRouter>
