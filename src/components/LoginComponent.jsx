@@ -19,16 +19,35 @@ export default function LoginComponent(){
         setPassword(event.target.value)
     }
 
-    function handleSubmit(){
-        if ((username==="sethanimesh") && (password==="dummy123")){
-            navigate(`/welcome/${username}`)
-            setSuccessMessage(true)
-            setErrorMessage(false)
-        }
-        else{
-            setSuccessMessage(false)
-            setErrorMessage(true)
-        }
+    function handleSubmit() {
+        const loginRequest = {
+            username: username,
+            password: password
+        };
+    
+        fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginRequest)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.username) {
+                navigate(`/welcome/${data.username}`);
+                setSuccessMessage(true);
+                setErrorMessage(false);
+            } else {
+                setSuccessMessage(false);
+                setErrorMessage(true);
+            }
+        })
+        .catch(error => {
+            setSuccessMessage(false);
+            setErrorMessage(true);
+            console.error('Error:', error);
+        });
     }
 
     function SuccessMessageComponent(){
