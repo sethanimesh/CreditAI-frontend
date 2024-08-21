@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "./AuthContext";
 
 export default function LoginComponent(){
 
     const navigate = useNavigate();
+
+    const authContext = useAuth()
 
     const[username, setUsername] = useState("sethanimesh")
     const[password, setPassword] = useState("")
@@ -36,9 +39,11 @@ export default function LoginComponent(){
         .then(data => {
             if (data.username) {
                 navigate(`/welcome/${data.username}`);
+                authContext.setAuthenticated(true)
                 setSuccessMessage(true);
                 setErrorMessage(false);
             } else {
+                authContext.setAuthenticated(true)
                 setSuccessMessage(false);
                 setErrorMessage(true);
             }
