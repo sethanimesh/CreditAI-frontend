@@ -17,7 +17,7 @@ export default function RegisterComponent() {
         setPassword(event.target.value);
     }
 
-    function handleConfirmPasswordChange(event) { // Added handle function for confirmPassword
+    function handleConfirmPasswordChange(event) { 
         setConfirmPassword(event.target.value);
     }
 
@@ -26,7 +26,7 @@ export default function RegisterComponent() {
     }
 
     function handleSubmit() {
-        if (password !== confirmPassword) { // Check if password and confirmPassword match
+        if (password !== confirmPassword) { 
             setErrorMessage(true);
             setSuccessMessage(false);
             setErrorMessageText("Passwords do not match");
@@ -36,7 +36,7 @@ export default function RegisterComponent() {
         const registrationRequest = {
             username: username,
             password: password,
-            confirmPassword: confirmPassword, // Include confirmPassword in the request
+            confirmPassword: confirmPassword, 
             email: email
         };
 
